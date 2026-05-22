@@ -7,19 +7,28 @@ import {
   get,
   update,
   onValue
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
 
 // Firebase 設定（換成你自己的）
 const firebaseConfig = {
-  apiKey: "AIzaSyA0Ext1VtgzjC5imQ6tLlQdRuBl7TmgN5U",
-  authDomain: "wedding-nfc-stamp.firebaseapp.com",
-  databaseURL: "https://wedding-nfc-stamp-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "wedding-nfc-stamp",
-  storageBucket: "wedding-nfc-stamp.firebasestorage.app",
-  messagingSenderId: "982842589372",
-  appId: "1:982842589372:web:f31ab7b0e4893a33fb50b9"
+
+  apiKey: "你的apiKey",
+
+  authDomain: "你的authDomain",
+
+  databaseURL: "你的databaseURL",
+
+  projectId: "你的projectId",
+
+  storageBucket: "你的storageBucket",
+
+  messagingSenderId: "你的messagingSenderId",
+
+  appId: "你的appId"
+
 };
 
 
@@ -41,11 +50,11 @@ const stationNames = {
 
   checkin: "簽到",
 
-  photo: "關卡 1",
+  photo: "拍貼機",
 
-  voice: "關卡 2",
+  voice: "留聲電話亭",
 
-  wall: "關卡 3"
+  wall: "交往照片牆"
 
 };
 
@@ -55,11 +64,11 @@ const stationIcons = {
 
   checkin: "🖊️",
 
-  photo: "✨",
+  photo: "📸",
 
-  voice: "✨",
+  voice: "☎️",
 
-  wall: "✨"
+  wall: "🖼️"
 
 };
 
@@ -576,11 +585,11 @@ async function searchGuest() {
 
           ${found.checkin ? "✓" : "✗"} 簽到<br>
 
-          ${found.photo ? "✓" : "✗"} 關卡1<br>
+          ${found.photo ? "✓" : "✗"} 拍貼機<br>
 
-          ${found.voice ? "✓" : "✗"} 關卡2<br>
+          ${found.voice ? "✓" : "✗"} 留聲電話亭<br>
 
-          ${found.wall ? "✓" : "✗"} 關卡3<br><br>
+          ${found.wall ? "✓" : "✗"} 交往照片牆<br><br>
 
           完成數：${doneCount}/4
 

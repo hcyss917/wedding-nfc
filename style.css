@@ -1,236 +1,427 @@
 body {
+
   margin: 0;
+
   min-height: 100vh;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
-  background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
+
+  background: linear-gradient(
+    180deg,
+    #eef7fc 0%,
+    #ffffff 100%
+  );
+
   font-family: "Microsoft JhengHei", sans-serif;
+
 }
 
 .card {
+
   width: 86%;
+
   max-width: 430px;
+
   text-align: center;
+
   padding: 48px 0;
+
 }
 
 h1 {
+
   margin: 0;
+
   color: #7ea6c2;
+
   font-size: 50px;
+
   font-weight: 700;
+
   letter-spacing: 3px;
+
 }
 
 .slogan {
+
   margin-top: 40px;
+
   margin-bottom: 12px;
+
   color: #3c5870;
+
   font-size: 30px;
+
   letter-spacing: 3px;
+
 }
 
 .eng {
+
   margin: 0;
+
   color: #7ea6c2;
+
   font-size: 27px;
+
   letter-spacing: 2px;
+
 }
 
 .date {
+
   margin-top: 30px;
+
   color: #8eaec5;
+
   font-size: 20px;
+
   letter-spacing: 4px;
+
 }
 
 .divider {
+
   margin-top: 32px;
+
   color: #a9c3d6;
+
   font-size: 30px;
+
 }
 
 .hint {
+
   margin-top: 34px;
+
   color: #6f8596;
+
   font-size: 17px;
+
   line-height: 1.9;
+
 }
 
 input {
+
   width: 88%;
+
   padding: 15px;
+
   margin-top: 16px;
+
   border-radius: 18px;
+
   border: 1px solid #c7dbe9;
-  background: rgba(255, 255, 255, 0.85);
+
+  background: rgba(255,255,255,0.85);
+
   color: #3c5870;
+
   font-size: 16px;
+
   outline: none;
+
   text-align: center;
+
 }
 
 button {
+
   width: 95%;
+
   margin-top: 18px;
+
   padding: 15px;
+
   border: none;
+
   border-radius: 18px;
+
   background: #8fb2cc;
+
   color: white;
+
   font-size: 16px;
+
   font-weight: bold;
+
 }
 
 .hidden {
+
   display: none;
+
 }
 
 .stamp-grid {
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 14px;
+
   margin-top: 28px;
+
 }
 
 .stamp {
+
   padding: 24px 10px;
+
   border-radius: 20px;
+
   border: 2px dashed #b7d1e4;
+
   background: rgba(255,255,255,0.65);
+
   color: #7d9aae;
+
   font-size: 18px;
+
 }
 
 .stamp.done {
+
   background: #e7f5ff;
+
   border: 2px solid #8fb2cc;
+
   color: #3c5870;
+
   font-weight: bold;
+
 }
 
 .stamp.done::before {
+
   content: "✓ ";
+
 }
 
 .complete-box {
+
   margin-top: 26px;
+
   padding: 28px 20px;
+
   border-radius: 28px;
-  background: linear-gradient(180deg, #edf7fd, #ffffff);
+
+  background: linear-gradient(
+    180deg,
+    #edf7fd,
+    #ffffff
+  );
+
   border: 2px solid #b7d1e4;
+
   animation: glow 2s infinite;
+
 }
 
 .complete-title {
+
   font-size: 42px;
+
   font-weight: bold;
+
   color: #6f95b3;
+
 }
 
 .complete-text {
+
   margin-top: 18px;
+
   font-size: 22px;
+
   color: #4f6779;
+
   line-height: 1.8;
+
 }
 
 @keyframes glow {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
+
+  0% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.03);
+
+  }
+
+  100% {
+
+    transform: scale(1);
+
+  }
+
 }
 
 .reset-btn {
+
   margin-top: 24px;
+
   background: transparent;
+
   border: 1px solid #b7d1e4;
+
   color: #7d9aae;
+
 }
 
 .modal {
+
   position: fixed;
+
   inset: 0;
-  background: rgba(58, 92, 116, 0.25);
+
+  background: rgba(58,92,116,0.25);
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   z-index: 999;
+
   padding: 24px;
+
 }
 
 .modal.hidden {
+
   display: none;
+
 }
 
 .modal-box {
+
   width: 82%;
+
   max-width: 330px;
+
   background: white;
+
   border-radius: 30px;
+
   padding: 30px 22px;
+
   border: 1px solid #d9edf7;
-  box-shadow: 0 18px 40px rgba(80, 120, 150, 0.22);
+
+  box-shadow: 0 18px 40px rgba(80,120,150,0.22);
+
 }
 
 .modal-icon {
+
   width: 92px;
+
   height: 92px;
+
   margin: 0 auto 18px;
+
   border-radius: 50%;
+
   background: #e8f4fb;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   font-size: 44px;
+
 }
 
 .modal-box h2 {
+
   color: #3c5870;
-  margin: 8px 0;
+
 }
 
 .modal-box p {
+
   color: #6f8596;
+
   line-height: 1.8;
+
 }
 
 .search-card {
+
   margin-top: 26px;
+
   padding: 24px;
+
   border-radius: 24px;
+
   background: rgba(255,255,255,0.78);
+
   border: 1px solid #d8e8f3;
+
 }
 
 .search-name {
+
   font-size: 26px;
+
   color: #3c5870;
+
   font-weight: bold;
+
 }
 
 .search-phone {
+
   margin-top: 6px;
+
   color: #7d9aae;
+
   font-size: 16px;
+
 }
 
 .search-status {
+
   margin-top: 18px;
+
   color: #6f8596;
+
   line-height: 2;
+
   font-size: 17px;
+
 }
 
 .redeem-btn {
+
   margin-top: 22px;
+
   background: #8fb2cc;
+
 }
 
 .redeemed {
+
   margin-top: 22px;
+
   color: #6f95b3;
+
   font-size: 24px;
+
   font-weight: bold;
+
 }
