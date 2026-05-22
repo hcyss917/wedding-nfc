@@ -293,7 +293,7 @@ function renderCard(data) {
 
         <div class="complete-title">
 
-          已兌換完成 🤍
+          已兌換完成✨
 
         </div>
 
@@ -602,7 +602,7 @@ async function searchGuest() {
 
         <div class="redeemed">
 
-          已兌換完成 🤍
+          已兌換完成✨
 
         </div>
 
@@ -681,7 +681,7 @@ window.redeemGuest = async function (guestId) {
 
 
 
-  alert("核銷成功 🤍");
+  alert("核銷成功✨");
 
 
 
