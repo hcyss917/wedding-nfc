@@ -150,6 +150,8 @@ button {
 
   font-weight: bold;
 
+  cursor: pointer;
+
 }
 
 .hidden {
@@ -423,5 +425,23 @@ button {
   font-size: 24px;
 
   font-weight: bold;
+
+}
+
+.delete-btn {
+
+  margin-top: 16px;
+
+  background: transparent;
+
+  border: 1px solid #d98c8c;
+
+  color: #b35f5f;
+
+}
+
+.danger-btn {
+
+  background: #d98c8c;
 
 }

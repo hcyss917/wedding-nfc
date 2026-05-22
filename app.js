@@ -6,6 +6,7 @@ import {
   set,
   get,
   update,
+  remove,
   onValue
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
@@ -14,21 +15,13 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 // Firebase 設定（換成你自己的）
 const firebaseConfig = {
-
-  apiKey: "你的apiKey",
-
-  authDomain: "你的authDomain",
-
-  databaseURL: "你的databaseURL",
-
-  projectId: "你的projectId",
-
-  storageBucket: "你的storageBucket",
-
-  messagingSenderId: "你的messagingSenderId",
-
-  appId: "你的appId"
-
+  apiKey: "AIzaSyA0Ext1VtgzjC5imQ6tLlQdRuBl7TmgN5U",
+  authDomain: "wedding-nfc-stamp.firebaseapp.com",
+  databaseURL: "https://wedding-nfc-stamp-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "wedding-nfc-stamp",
+  storageBucket: "wedding-nfc-stamp.firebasestorage.app",
+  messagingSenderId: "982842589372",
+  appId: "1:982842589372:web:f31ab7b0e4893a33fb50b9"
 };
 
 
@@ -119,6 +112,8 @@ const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
 const searchResult = document.getElementById("searchResult");
+
+const deleteAllBtn = document.getElementById("deleteAllBtn");
 
 
 
@@ -483,6 +478,8 @@ resetBtn.addEventListener("click", () => {
 
 searchBtn.addEventListener("click", searchGuest);
 
+deleteAllBtn.addEventListener("click", deleteAllGuests);
+
 
 
 async function searchGuest() {
@@ -647,6 +644,18 @@ async function searchGuest() {
 
 
 
+    html += `
+
+      <button class="delete-btn" onclick="deleteGuest('${found.id}')">
+
+        刪除此筆資料
+
+      </button>
+
+    `;
+
+
+
     html += `</div>`;
 
   });
@@ -679,6 +688,70 @@ window.redeemGuest = async function (guestId) {
   searchGuest();
 
 };
+
+
+
+
+// 刪除單筆
+
+window.deleteGuest = async function (guestId) {
+
+  const yes = confirm("確定要刪除這筆資料嗎？");
+
+  if (!yes) return;
+
+
+
+  await remove(ref(db, "guests/" + guestId));
+
+
+
+  alert("已刪除");
+
+
+
+  searchGuest();
+
+};
+
+
+
+
+// 一鍵刪除全部
+
+async function deleteAllGuests() {
+
+  const yes = confirm("確定要刪除全部資料嗎？");
+
+  if (!yes) return;
+
+
+
+  const yesAgain = confirm("再次確認：真的要全部刪除？");
+
+  if (!yesAgain) return;
+
+
+
+  await remove(ref(db, "guests"));
+
+
+
+  searchResult.innerHTML = `
+
+    <div class="search-card">
+
+      已清空全部資料
+
+    </div>
+
+  `;
+
+
+
+  alert("全部資料已刪除");
+
+}
 
 
 
