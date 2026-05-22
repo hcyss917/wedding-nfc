@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>婚禮集點卡</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
   <main class="card">
-    <h1>婚禮集點卡</h1>
 
-    <p class="slogan">因偉有你，家才完整</p>
-    <p class="eng">Me + You = Home</p>
-    <p class="date">2026.06.06</p>
+    <div id="normalPage">
+      <h1>婚禮集點卡</h1>
+      <p class="slogan">因偉有你，家才完整</p>
+      <p class="eng">Me + You = Home</p>
+      <p class="date">2026.06.06</p>
 
-    <div class="divider">♡</div>
+      <div class="divider">♡</div>
 
-    <section id="registerArea">
-      <p class="hint">請輸入姓名，建立你的幸福集點卡 🤍</p>
-      <input id="guestName" type="text" placeholder="請輸入姓名">
-      <button id="startBtn">開始集點</button>
-    </section>
+      <section id="registerArea">
+        <p class="hint">請輸入資料，建立你的幸福集點卡 🤍</p>
 
-    <section id="cardArea" class="hidden">
-      <p id="helloText" class="hint"></p>
+        <input id="guestName" type="text" placeholder="請輸入姓名">
+        <input id="phoneLast3" type="tel" maxlength="3" placeholder="請輸入手機末三碼">
 
-      <div class="stamp-grid">
-        <div class="stamp" id="stamp-checkin">簽到桌</div>
-        <div class="stamp" id="stamp-photo">拍貼機</div>
-        <div class="stamp" id="stamp-voice">留聲機</div>
-        <div class="stamp" id="stamp-wall">照片牆</div>
-      </div>
+        <button id="startBtn">開始集點</button>
+      </section>
 
-      <p id="progressText" class="hint"></p>
-      <p id="messageText" class="message"></p>
+      <section id="cardArea" class="hidden">
+        <p id="helloText" class="hint"></p>
 
-      <button id="resetBtn" class="reset-btn">重新開始測試</button>
-    </section>
+        <div class="stamp-grid">
+          <div class="stamp" id="stamp-checkin">簽到桌</div>
+          <div class="stamp" id="stamp-photo">拍貼機</div>
+          <div class="stamp" id="stamp-voice">電話亭</div>
+          <div class="stamp" id="stamp-wall">相片桌</div>
+        </div>
+
+        <p id="progressText" class="hint"></p>
+        <div id="messageText"></div>
+
+        <button id="resetBtn" class="reset-btn">重新開始測試</button>
+      </section>
+    </div>
+
+    <div id="adminPage" class="hidden">
+      <h1>婚禮核銷系統</h1>
+      <p class="eng">Staff Only</p>
+
+      <input id="searchInput" type="tel" maxlength="3" placeholder="輸入手機末三碼">
+      <button id="searchBtn">搜尋賓客</button>
+
+      <div id="searchResult"></div>
+    </div>
+
   </main>
 
   <div id="stampModal" class="modal hidden">
@@ -51,6 +66,5 @@
   </div>
 
   <script type="module" src="app.js"></script>
-
 </body>
 </html>
