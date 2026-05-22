@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>婚禮集點卡</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="card">
+
+    <h1>婚禮集點卡</h1>
+
+    <p class="slogan">因偉有你，家才完整</p>
+    <p class="eng">Me + You = Home</p>
+    <p class="date">2026.06.06</p>
+
+    <div class="divider">♡</div>
+
+    <section id="registerArea">
+      <p class="hint">請輸入姓名，建立你的幸福集點卡 🤍</p>
+      <input id="guestName" type="text" placeholder="請輸入姓名">
+      <button id="startBtn">開始集點</button>
+    </section>
+
+    <section id="cardArea" class="hidden">
+      <p id="helloText" class="hint"></p>
+
+      <div class="stamp-grid">
+        <div class="stamp" id="stamp-checkin">簽到桌</div>
+        <div class="stamp" id="stamp-photo">拍貼機</div>
+        <div class="stamp" id="stamp-voice">留聲機</div>
+        <div class="stamp" id="stamp-wall">照片牆</div>
+      </div>
+
+      <p id="progressText" class="hint"></p>
+      <p id="messageText" class="message"></p>
+    </section>
+
+  </main>
+
+  <div id="stampModal" class="modal hidden">
+    <div class="modal-box">
+      <div id="modalIcon" class="modal-icon">🤍</div>
+      <h2 id="modalTitle">蒐集成功</h2>
+      <p id="modalText">蒐集到幸福印章</p>
+      <button id="modalCloseBtn">好耶！</button>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
