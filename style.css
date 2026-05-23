@@ -120,40 +120,42 @@ button {
 
 .stamp {
   position: relative;
-  min-height: 190px;
-  padding: 14px 10px 10px;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
   border-radius: 22px;
   border: 2px dashed #b7d1e4;
   background: rgba(255,255,255,0.65);
   transition: 0.35s ease;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.stamp img {
-  width: 78%;
+.stamp-inner {
+  position: relative;
+  width: 86%;
+}
+
+.stamp-gray,
+.stamp-color {
+  width: 100%;
   display: block;
-  margin: 0 auto;
   border-radius: 18px;
 }
 
-/* 灰色預設 */
-
 .stamp-gray {
   opacity: 1;
-}
-
-/* 彩色預設隱藏 */
-
-.stamp-color {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%) scale(0.92);
-  opacity: 0;
   transition: 0.45s ease;
 }
 
-/* 完成 */
+.stamp-color {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: 0.45s ease;
+}
 
 .stamp.done {
   background: #e7f5ff;
@@ -167,7 +169,7 @@ button {
 
 .stamp.done .stamp-color {
   opacity: 1;
-  transform: translateX(-50%) scale(1);
+  transform: scale(1);
   animation: stampPop 0.45s ease;
 }
 
@@ -188,19 +190,17 @@ button {
 }
 
 @keyframes stampPop {
-
   0% {
-    transform: translateX(-50%) scale(0.7) rotate(-5deg);
+    transform: scale(0.7);
   }
 
   60% {
-    transform: translateX(-50%) scale(1.08) rotate(2deg);
+    transform: scale(1.06);
   }
 
   100% {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
   }
-
 }
 
 .complete-box {
@@ -226,7 +226,6 @@ button {
 }
 
 @keyframes glow {
-
   0% {
     transform: scale(1);
   }
@@ -239,7 +238,6 @@ button {
   100% {
     transform: scale(1);
   }
-
 }
 
 .reset-btn {
