@@ -8,82 +8,196 @@
 </head>
 
 <body>
-  <main class="card">
 
-    <div id="normalPage">
-      <h1>婚禮集點卡</h1>
+  <div class="phone-frame">
 
-      <p class="eng">Me + You = Home</p>
-      <p class="slogan">
-        因偉有你，佳才完整
-      </p>
-      <p class="date">
-        2026.06.06
-      </p>
+    <main class="card">
 
-      <div class="divider">♡</div>
+      <div id="normalPage">
 
-      <section id="registerArea">
-        <p class="hint">請輸入資料，建立你的幸福集點卡 🤍</p>
+        <h1>婚禮集點卡</h1>
 
-        <input id="guestName" type="text" placeholder="請輸入姓名">
-        <input id="phoneLast3" type="tel" maxlength="3" placeholder="請輸入手機末三碼">
+        <p class="eng">Me + You = Home</p>
 
-        <button id="startBtn">開始集點</button>
-      </section>
+        <p class="slogan">
+          因偉有你，佳才完整
+        </p>
 
-      <section id="cardArea" class="hidden">
-        <p id="helloText" class="hint"></p>
+        <p class="date">
+          2026.06.06
+        </p>
 
-        <div class="stamp-grid">
-          <div class="stamp" id="stamp-checkin">
-            <img src="簽到.png" alt="簽到">
+        <div class="divider">♡</div>
+
+        <section id="registerArea">
+
+          <p class="hint">
+            請輸入資料，建立你的幸福集點卡 🤍
+          </p>
+
+          <input
+            id="guestName"
+            type="text"
+            placeholder="請輸入姓名"
+          >
+
+          <input
+            id="phoneLast3"
+            type="tel"
+            maxlength="3"
+            placeholder="請輸入手機末三碼"
+          >
+
+          <button id="startBtn">
+            開始集點
+          </button>
+
+        </section>
+
+        <section id="cardArea" class="hidden">
+
+          <p id="helloText" class="hint"></p>
+
+          <div class="stamp-grid">
+
+            <!-- 簽到 -->
+            <div class="stamp" id="stamp-checkin">
+
+              <img
+                class="stamp-gray"
+                src="簽到-灰.png"
+                alt="簽到"
+              >
+
+              <img
+                class="stamp-color"
+                src="簽到.png"
+                alt="簽到"
+              >
+
+            </div>
+
+            <!-- 拍貼機 -->
+            <div class="stamp" id="stamp-photo">
+
+              <img
+                class="stamp-gray"
+                src="拍貼機-灰.png"
+                alt="拍貼機"
+              >
+
+              <img
+                class="stamp-color"
+                src="拍貼機.png"
+                alt="拍貼機"
+              >
+
+            </div>
+
+            <!-- 留聲電話亭 -->
+            <div class="stamp" id="stamp-voice">
+
+              <img
+                class="stamp-gray"
+                src="留聲電話亭-灰.png"
+                alt="留聲電話亭"
+              >
+
+              <img
+                class="stamp-color"
+                src="留聲電話亭.png"
+                alt="留聲電話亭"
+              >
+
+            </div>
+
+            <!-- 交往照片牆 -->
+            <div class="stamp" id="stamp-wall">
+
+              <img
+                class="stamp-gray"
+                src="交往照片牆-灰.png"
+                alt="交往照片牆"
+              >
+
+              <img
+                class="stamp-color"
+                src="交往照片牆.png"
+                alt="交往照片牆"
+              >
+
+            </div>
+
           </div>
 
-          <div class="stamp" id="stamp-photo">
-            <img src="拍貼機.png" alt="拍貼機">
-          </div>
+          <p id="progressText" class="hint"></p>
 
-          <div class="stamp" id="stamp-voice">
-            <img src="留聲電話亭.png" alt="留聲電話亭">
-          </div>
+          <div id="messageText"></div>
 
-          <div class="stamp" id="stamp-wall">
-            <img src="交往照片牆.png" alt="交往照片牆">
-          </div>
-        </div>
+          <button id="resetBtn" class="reset-btn">
+            重新開始測試
+          </button>
 
-        <p id="progressText" class="hint"></p>
-        <div id="messageText"></div>
+        </section>
 
-        <button id="resetBtn" class="reset-btn">重新開始測試</button>
-      </section>
-    </div>
+      </div>
 
-    <div id="adminPage" class="hidden">
-      <h1>婚禮核銷系統</h1>
-      <p class="eng">Staff Only</p>
+      <!-- staff -->
+      <div id="adminPage" class="hidden">
 
-      <input id="searchInput" type="tel" maxlength="3" placeholder="輸入手機末三碼">
+        <h1>婚禮核銷系統</h1>
 
-      <button id="searchBtn">搜尋賓客</button>
+        <p class="eng">Staff Only</p>
 
-      <button id="deleteAllBtn" class="danger-btn">一鍵刪除全部資料</button>
+        <input
+          id="searchInput"
+          type="tel"
+          maxlength="3"
+          placeholder="輸入手機末三碼"
+        >
 
-      <div id="searchResult"></div>
-    </div>
+        <button id="searchBtn">
+          搜尋賓客
+        </button>
 
-  </main>
+        <button id="deleteAllBtn" class="danger-btn">
+          一鍵刪除全部資料
+        </button>
 
+        <div id="searchResult"></div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Modal -->
   <div id="stampModal" class="modal hidden">
+
     <div class="modal-box">
-      <div id="modalIcon" class="modal-icon">🤍</div>
-      <h2 id="modalTitle">蒐集成功</h2>
-      <p id="modalText">蒐集到幸福印章</p>
-      <button id="modalCloseBtn">好耶！</button>
+
+      <div id="modalIcon" class="modal-icon">
+        🤍
+      </div>
+
+      <h2 id="modalTitle">
+        蒐集成功
+      </h2>
+
+      <p id="modalText">
+        蒐集到幸福印章
+      </p>
+
+      <button id="modalCloseBtn">
+        好耶！
+      </button>
+
     </div>
+
   </div>
 
   <script type="module" src="app.js"></script>
+
 </body>
 </html>

@@ -1,68 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
   font-family: "Microsoft JhengHei", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
+.phone-frame {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
 }
 
 .card {
-  width: 90%;
-  max-width: 430px;
+  width: 100%;
+  padding: 42px 18px 28px;
   text-align: center;
-  padding: 48px 0;
 }
 
 h1 {
   margin: 0 0 18px;
   color: #7ea6c2;
-  font-size: 48px;
+  font-size: clamp(38px, 10vw, 48px);
   font-weight: 700;
   letter-spacing: 3px;
-}
-
-.slogan {
-
-  margin-top: 8px;
-
-  margin-bottom: 8px;
-
-  color: #3c5870;
-
-  font-size: 24px;
-
-  letter-spacing: 2px;
-
-  line-height: 1.3;
-
+  line-height: 1.15;
 }
 
 .eng {
-
   margin: 0;
-
   color: #7ea6c2;
-
   font-size: 22px;
-
   letter-spacing: 1px;
-
   line-height: 1.2;
+}
 
+.slogan {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: #3c5870;
+  font-size: 24px;
+  letter-spacing: 2px;
+  line-height: 1.3;
 }
 
 .date {
-
   margin-top: 4px;
-
   color: #8eaec5;
-
   font-size: 16px;
-
   letter-spacing: 3px;
-
 }
 
 .divider {
@@ -74,8 +75,8 @@ h1 {
 .hint {
   margin-top: 18px;
   color: #6f8596;
-  font-size: 17px;
-  line-height: 1.9;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 input {
@@ -108,42 +109,51 @@ button {
   display: none;
 }
 
+/* 印章區 */
+
 .stamp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 22px;
 }
 
 .stamp {
+  position: relative;
+  min-height: 190px;
   padding: 14px 10px 10px;
   border-radius: 22px;
-  min-height: 180px;
   border: 2px dashed #b7d1e4;
   background: rgba(255,255,255,0.65);
   transition: 0.35s ease;
-  position: relative;
+  overflow: hidden;
 }
 
 .stamp img {
-
   width: 78%;
-
   display: block;
-
   margin: 0 auto;
-
   border-radius: 18px;
-
-  opacity: 0.22;
-
-  filter: grayscale(100%) brightness(1.35);
-
-  transform: scale(0.94);
-
-  transition: 0.45s ease;
-
 }
+
+/* 灰色預設 */
+
+.stamp-gray {
+  opacity: 1;
+}
+
+/* 彩色預設隱藏 */
+
+.stamp-color {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.92);
+  opacity: 0;
+  transition: 0.45s ease;
+}
+
+/* 完成 */
 
 .stamp.done {
   background: #e7f5ff;
@@ -151,10 +161,13 @@ button {
   box-shadow: 0 10px 24px rgba(126,166,194,0.22);
 }
 
-.stamp.done img {
+.stamp.done .stamp-gray {
+  opacity: 0;
+}
+
+.stamp.done .stamp-color {
   opacity: 1;
-  filter: none;
-  transform: scale(1);
+  transform: translateX(-50%) scale(1);
   animation: stampPop 0.45s ease;
 }
 
@@ -171,21 +184,23 @@ button {
   line-height: 30px;
   border-radius: 50%;
   font-weight: bold;
-  z-index: 2;
+  z-index: 5;
 }
 
 @keyframes stampPop {
+
   0% {
-    transform: scale(0.8) rotate(-4deg);
+    transform: translateX(-50%) scale(0.7) rotate(-5deg);
   }
 
   60% {
-    transform: scale(1.08) rotate(2deg);
+    transform: translateX(-50%) scale(1.08) rotate(2deg);
   }
 
   100% {
-    transform: scale(1) rotate(0);
+    transform: translateX(-50%) scale(1);
   }
+
 }
 
 .complete-box {
@@ -211,6 +226,7 @@ button {
 }
 
 @keyframes glow {
+
   0% {
     transform: scale(1);
   }
@@ -223,6 +239,7 @@ button {
   100% {
     transform: scale(1);
   }
+
 }
 
 .reset-btn {
