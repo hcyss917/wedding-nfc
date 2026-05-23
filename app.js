@@ -211,7 +211,7 @@ function renderCard(data) {
   cardArea.classList.remove("hidden");
 
   helloText.innerText =
-    `${data.name}，歡迎來收集幸福印章 🤍`;
+    `${data.name}，歡迎來收集幸福印章✨`;
 
   let count = 0;
 
@@ -242,7 +242,7 @@ function renderCard(data) {
     messageText.innerHTML = `
       <div class="complete-box">
         <div class="complete-title">
-          已兌換完成 🤍
+          已兌換完成 🩵
         </div>
       </div>
     `;
@@ -257,7 +257,7 @@ function renderCard(data) {
         </div>
 
         <div class="complete-text">
-          請至兌換區領取小禮物 🤍
+          請至兌換區領取小禮物 🩵
         </div>
 
       </div>
@@ -335,7 +335,7 @@ async function collectStamp() {
   showModal(
     stationIcons[station],
     `蒐集到${stationNames[station]}`,
-    "幸福印章已加入 🤍"
+    "幸福印章已加入 🩵"
   );
 
 }
@@ -460,7 +460,7 @@ async function searchGuest() {
 
       html += `
         <div class="redeemed">
-          已兌換完成 🤍
+          已兌換完成 🩵
         </div>
       `;
 
@@ -513,7 +513,7 @@ window.redeemGuest = async function (guestId) {
 
   });
 
-  alert("核銷成功 🤍");
+  alert("核銷成功 🩵");
 
   searchGuest();
 
