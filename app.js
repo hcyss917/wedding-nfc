@@ -211,7 +211,7 @@ function renderCard(data) {
   cardArea.classList.remove("hidden");
 
   helloText.innerText =
-    `${data.name}，歡迎來收集幸福印章✨`;
+    `${data.name}，歡迎來蒐集幸福印章✨`;
 
   let count = 0;
 
