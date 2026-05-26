@@ -8,41 +8,31 @@
 </head>
 
 <body>
-
   <div class="phone-frame">
-
     <main class="card">
 
       <div id="normalPage">
-
         <h1>婚禮集點卡</h1>
 
         <p class="eng">Me + You = Home</p>
-
         <p class="slogan">因偉有你，佳才完整</p>
-
         <p class="date">2026.06.06</p>
 
         <div class="divider">♡</div>
 
         <section id="registerArea">
-
-          <p class="hint">請輸入資料，建立你的幸福集點卡✨</p>
+          <p class="hint">請輸入資料，建立你的幸福集點卡 🤍</p>
 
           <input id="guestName" type="text" placeholder="請輸入姓名">
-
           <input id="phoneLast3" type="tel" maxlength="3" placeholder="請輸入手機末三碼">
 
           <button id="startBtn">開始集點</button>
-
         </section>
 
         <section id="cardArea" class="hidden">
-
           <p id="helloText" class="hint"></p>
 
           <div class="stamp-grid">
-
             <div class="stamp" id="stamp-checkin">
               <div class="stamp-inner">
                 <img class="stamp-gray" src="簽到-灰.png" alt="簽到">
@@ -70,42 +60,31 @@
                 <img class="stamp-color" src="交往照片牆.png" alt="交往照片牆">
               </div>
             </div>
-
           </div>
 
           <p id="progressText" class="hint"></p>
-
           <div id="messageText"></div>
-
-          <button id="resetBtn" class="reset-btn">重新開始測試</button>
-
         </section>
-
       </div>
 
       <div id="adminPage" class="hidden">
-
         <h1>婚禮核銷系統</h1>
-
         <p class="eng">Staff Only</p>
 
         <input id="searchInput" type="tel" maxlength="3" placeholder="輸入手機末三碼">
 
         <button id="searchBtn">搜尋賓客</button>
-
         <button id="deleteAllBtn" class="danger-btn">一鍵刪除全部資料</button>
 
         <div id="searchResult"></div>
-
       </div>
 
     </main>
-
   </div>
 
   <div id="stampModal" class="modal hidden">
     <div class="modal-box">
-      <div id="modalIcon" class="modal-icon">🩵</div>
+      <div id="modalIcon" class="modal-icon">🤍</div>
       <h2 id="modalTitle">蒐集成功</h2>
       <p id="modalText">蒐集到幸福印章</p>
       <button id="modalCloseBtn">好耶！</button>
@@ -113,6 +92,5 @@
   </div>
 
   <script type="module" src="app.js"></script>
-
 </body>
 </html>
