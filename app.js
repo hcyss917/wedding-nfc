@@ -154,7 +154,7 @@ function renderCard(data) {
   registerArea.classList.add("hidden");
   cardArea.classList.remove("hidden");
 
-  helloText.innerText = `${data.name}，歡迎蒐集幸福印章 💙`;
+  helloText.innerText = `${data.name}，歡迎蒐集幸福印章 🩵`;
 
   let count = 0;
 
@@ -228,7 +228,7 @@ async function collectStamp() {
   showModal(
     stationIcons[station],
     `蒐集到${stationNames[station]}`,
-    "幸福印章已加入 🩵"
+    "幸福印章已加入 💙"
   );
 }
 
