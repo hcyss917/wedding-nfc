@@ -154,7 +154,7 @@ function renderCard(data) {
   registerArea.classList.add("hidden");
   cardArea.classList.remove("hidden");
 
-  helloText.innerText = `${data.name}，歡迎來收集幸福印章 🤍`;
+  helloText.innerText = `${data.name}，歡迎蒐集幸福印章 💙`;
 
   let count = 0;
 
@@ -174,14 +174,14 @@ function renderCard(data) {
   if (data.redeemed) {
     messageText.innerHTML = `
       <div class="complete-box">
-        <div class="complete-title">已兌換完成 🤍</div>
+        <div class="complete-title">已兌換完成 ✨</div>
       </div>
     `;
   } else if (count === 4) {
     messageText.innerHTML = `
       <div class="complete-box">
         <div class="complete-title">🎁 集點完成 🎁</div>
-        <div class="complete-text">請至兌換區領取小禮物 🤍</div>
+        <div class="complete-text">請至兌換區領取小禮物 ✨</div>
       </div>
     `;
   } else {
@@ -228,7 +228,7 @@ async function collectStamp() {
   showModal(
     stationIcons[station],
     `蒐集到${stationNames[station]}`,
-    "幸福印章已加入 🤍"
+    "幸福印章已加入 🩵"
   );
 }
 
@@ -293,7 +293,7 @@ async function searchGuest() {
     `;
 
     if (found.redeemed) {
-      html += `<div class="redeemed">已兌換完成 🤍</div>`;
+      html += `<div class="redeemed">已兌換完成 ✨</div>`;
     } else if (doneCount === 4) {
       html += `
         <button class="redeem-btn" onclick="redeemGuest('${found.id}')">
@@ -322,7 +322,7 @@ window.redeemGuest = async function (guestId) {
     redeemedAt: Date.now()
   });
 
-  alert("核銷成功 🤍");
+  alert("核銷成功 ✨");
   searchGuest();
 };
 
