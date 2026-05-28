@@ -154,7 +154,7 @@ function renderCard(data) {
   registerArea.classList.add("hidden");
   cardArea.classList.remove("hidden");
 
-  helloText.innerText = `${data.name}，歡迎蒐集幸福印章 🩵`;
+  helloText.innerText = `${data.name}，歡迎蒐集幸福印章♡`;
 
   let count = 0;
 
