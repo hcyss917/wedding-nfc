@@ -2,17 +2,21 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   margin: 0;
+  padding: 0;
   min-height: 100%;
   background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
-  font-family: "Microsoft JhengHei", sans-serif;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef7fc 0%, #ffffff 100%);
+  font-family: "Microsoft JhengHei", sans-serif;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   overflow-x: hidden;
 }
 
@@ -47,7 +51,8 @@ h1 {
 }
 
 .slogan {
-  margin: 8px 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
   color: #3c5870;
   font-size: 24px;
   letter-spacing: 2px;
@@ -61,20 +66,25 @@ h1 {
   letter-spacing: 3px;
 }
 
+.divider {
+  margin-top: 18px;
+  color: #a9c3d6;
+  font-size: 30px;
+}
 .divider-photo {
-  margin-top: 20px;
-  margin-bottom: 12px;
   display: flex;
   justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 12px;
 }
 
 .divider-photo img {
-  width: 220px;
+  width: 240px;
+  max-width: 80%;
   height: auto;
-  object-fit: contain;
-  border-radius: 24px;
-  border: 4px solid #d8e9f5;
-  box-shadow: 0 6px 18px rgba(126, 166, 194, 0.18);
+  border-radius: 18px;
+  border: 3px solid #d8e9f5;
+  box-shadow: 0 4px 12px rgba(126,166,194,0.15);
 }
 
 .hint {
@@ -128,6 +138,7 @@ button {
   border-radius: 22px;
   border: 2px dashed #b7d1e4;
   background: rgba(255,255,255,0.65);
+  transition: 0.35s ease;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -144,6 +155,11 @@ button {
   width: 100%;
   display: block;
   border-radius: 18px;
+}
+
+.stamp-gray {
+  opacity: 1;
+  transition: 0.45s ease;
 }
 
 .stamp-color {
@@ -167,6 +183,7 @@ button {
 .stamp.done .stamp-color {
   opacity: 1;
   transform: scale(1);
+  animation: stampPop 0.45s ease;
 }
 
 .stamp.done::before {
@@ -185,12 +202,19 @@ button {
   z-index: 5;
 }
 
+@keyframes stampPop {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
 .complete-box {
   margin-top: 26px;
   padding: 28px 20px;
   border-radius: 28px;
   background: linear-gradient(180deg, #edf7fd, #ffffff);
   border: 2px solid #b7d1e4;
+  animation: glow 2s infinite;
 }
 
 .complete-title {
@@ -204,6 +228,15 @@ button {
   font-size: 22px;
   color: #4f6779;
   line-height: 1.8;
+}
+
+@keyframes glow {
+  0% { transform: scale(1); }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 28px rgba(143,178,204,0.35);
+  }
+  100% { transform: scale(1); }
 }
 
 .modal {
@@ -229,7 +262,6 @@ button {
   padding: 30px 22px;
   border: 1px solid #d9edf7;
   box-shadow: 0 18px 40px rgba(80,120,150,0.22);
-  text-align: center;
 }
 
 .modal-icon {
