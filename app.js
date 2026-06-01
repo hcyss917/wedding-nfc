@@ -181,7 +181,7 @@ function renderCard(data) {
     messageText.innerHTML = `
       <div class="complete-box">
         <div class="complete-title">🎁 集點完成 🎁</div>
-        <div class="complete-text">請至兌換區領取小禮物 ✨</div>
+        <div class="complete-text">請至禮金桌領取小禮物 ✨</div>
       </div>
     `;
   } else {
