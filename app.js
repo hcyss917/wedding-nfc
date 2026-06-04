@@ -226,7 +226,7 @@ function renderCard(data) {
         <div class="soldout-title">🎁禮物已被換完🎁</div>
         <div class="soldout-text">
           小禮物已經全數送完了<br>
-          沒收到也別灰心<br>
+          沒換到也別灰心<br>
           敬請期待後續活動♡
         </div>
       </div>
