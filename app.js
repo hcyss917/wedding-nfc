@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const STAFF_DELETE_PASSWORD = "loho6666";
-const GIFT_TOTAL = 3;
+const GIFT_TOTAL = 2;
 
 const stations = ["checkin", "photo", "voice", "wall"];
 
@@ -223,12 +223,11 @@ function renderCard(data) {
   } else if (count === 4 && isGiftSoldOut()) {
     messageText.innerHTML = `
       <div class="complete-box">
-        <div class="soldout-title">🎁 禮物已兌換完畢 🎁</div>
+        <div class="soldout-title">🎁禮物已被換完🎁</div>
         <div class="soldout-text">
           小禮物已經全數送完了<br>
           沒收到也別灰心<br>
-          謝謝你一起參與<br>
-          偉銓＆佳穎的婚禮 ♡
+          敬請期待後續活動♡
         </div>
       </div>
     `;
