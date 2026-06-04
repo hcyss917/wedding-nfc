@@ -7,7 +7,8 @@ import {
   get,
   update,
   remove,
-  onValue
+  onValue,
+  runTransaction
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
@@ -25,6 +26,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const STAFF_DELETE_PASSWORD = "loho6666";
+const GIFT_TOTAL = 100;
 
 const stations = ["checkin", "photo", "voice", "wall"];
 
@@ -63,8 +65,11 @@ const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const searchResult = document.getElementById("searchResult");
 const deleteAllBtn = document.getElementById("deleteAllBtn");
+const giftCountBtn = document.getElementById("giftCountBtn");
 
 let currentGuestId = localStorage.getItem("weddingGuestId");
+let latestGuestData = null;
+let giftRedeemedCount = 0;
 
 const params = new URLSearchParams(window.location.search);
 const isStaff = params.get("staff");
@@ -81,6 +86,42 @@ deleteAllBtn.addEventListener("click", deleteAllGuests);
 modalCloseBtn.addEventListener("click", () => {
   stampModal.classList.add("hidden");
 });
+
+function isGiftSoldOut() {
+  return giftRedeemedCount >= GIFT_TOTAL;
+}
+
+function listenGiftStats() {
+  onValue(ref(db, "stats/gifts/redeemedCount"), (snapshot) => {
+    giftRedeemedCount = snapshot.val() || 0;
+
+    updateGiftCountDisplay();
+
+    if (latestGuestData) {
+      renderCard(latestGuestData);
+    }
+  });
+}
+
+function updateGiftCountDisplay() {
+  if (!giftCountBtn) return;
+
+  const remain = Math.max(GIFT_TOTAL - giftRedeemedCount, 0);
+
+  if (giftRedeemedCount >= GIFT_TOTAL) {
+    giftCountBtn.innerHTML = `
+      🎁 禮物已兌換完畢<br>
+      已兌換：${giftRedeemedCount} / ${GIFT_TOTAL}
+    `;
+    giftCountBtn.classList.add("count-full");
+  } else {
+    giftCountBtn.innerHTML = `
+      🎁 兌換數量：${giftRedeemedCount} / ${GIFT_TOTAL}<br>
+      剩餘：${remain} 份
+    `;
+    giftCountBtn.classList.remove("count-full");
+  }
+}
 
 async function createGuestCard() {
   const name = guestNameInput.value.trim();
@@ -146,6 +187,8 @@ function listenGuestData() {
   onValue(ref(db, "guests/" + currentGuestId), (snapshot) => {
     const data = snapshot.val();
     if (!data) return;
+
+    latestGuestData = data;
     renderCard(data);
   });
 }
@@ -175,6 +218,18 @@ function renderCard(data) {
     messageText.innerHTML = `
       <div class="complete-box">
         <div class="complete-title">已兌換完成 ✨</div>
+      </div>
+    `;
+  } else if (count === 4 && isGiftSoldOut()) {
+    messageText.innerHTML = `
+      <div class="complete-box">
+        <div class="soldout-title">🎁 禮物已兌換完畢 🎁</div>
+        <div class="soldout-text">
+          小禮物已經全數送完了<br>
+          沒收到也別灰心<br>
+          謝謝你一起參與<br>
+          偉銓＆佳穎的婚禮 ♡
+        </div>
       </div>
     `;
   } else if (count === 4) {
@@ -294,6 +349,8 @@ async function searchGuest() {
 
     if (found.redeemed) {
       html += `<div class="redeemed">已兌換完成 ✨</div>`;
+    } else if (doneCount === 4 && isGiftSoldOut()) {
+      html += `<div class="redeemed">禮物已兌換完畢</div>`;
     } else if (doneCount === 4) {
       html += `
         <button class="redeem-btn" onclick="redeemGuest('${found.id}')">
@@ -317,12 +374,47 @@ async function searchGuest() {
 }
 
 window.redeemGuest = async function (guestId) {
-  await update(ref(db, "guests/" + guestId), {
-    redeemed: true,
-    redeemedAt: Date.now()
+  const guestSnap = await get(ref(db, "guests/" + guestId));
+  const guest = guestSnap.val();
+
+  if (!guest) {
+    alert("查無此賓客資料");
+    return;
+  }
+
+  if (guest.redeemed) {
+    alert("此賓客已經兌換過");
+    searchGuest();
+    return;
+  }
+
+  const countRef = ref(db, "stats/gifts/redeemedCount");
+
+  const result = await runTransaction(countRef, (currentValue) => {
+    const count = currentValue || 0;
+
+    if (count >= GIFT_TOTAL) {
+      return;
+    }
+
+    return count + 1;
   });
 
-  alert("核銷成功 ✨");
+  if (!result.committed) {
+    alert("禮物已兌換完畢");
+    searchGuest();
+    return;
+  }
+
+  const newCount = result.snapshot.val();
+
+  await update(ref(db, "guests/" + guestId), {
+    redeemed: true,
+    redeemedAt: Date.now(),
+    giftNumber: newCount
+  });
+
+  alert(`核銷成功 ✨\n目前已兌換 ${newCount} / ${GIFT_TOTAL}`);
   searchGuest();
 };
 
@@ -336,6 +428,16 @@ window.deleteGuest = async function (guestId) {
 
   const yes = confirm("確定要刪除這筆資料嗎？");
   if (!yes) return;
+
+  const guestSnap = await get(ref(db, "guests/" + guestId));
+  const guest = guestSnap.val();
+
+  if (guest && guest.redeemed) {
+    await runTransaction(ref(db, "stats/gifts/redeemedCount"), (currentValue) => {
+      const count = currentValue || 0;
+      return Math.max(count - 1, 0);
+    });
+  }
 
   await remove(ref(db, "guests/" + guestId));
 
@@ -359,12 +461,20 @@ async function deleteAllGuests() {
 
   await remove(ref(db, "guests"));
 
+  await set(ref(db, "stats/gifts"), {
+    redeemedCount: 0,
+    total: GIFT_TOTAL,
+    resetAt: Date.now()
+  });
+
   searchResult.innerHTML = `
     <div class="search-card">已清空全部資料</div>
   `;
 
-  alert("全部資料已刪除");
+  alert("全部資料已刪除，兌換數量已重置");
 }
+
+listenGiftStats();
 
 if (isStaff !== "1") {
   listenGuestData();

@@ -71,6 +71,7 @@ h1 {
   color: #a9c3d6;
   font-size: 30px;
 }
+
 .divider-photo {
   display: flex;
   justify-content: center;
@@ -230,6 +231,20 @@ button {
   line-height: 1.8;
 }
 
+.soldout-title {
+  color: #6f95b3;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.soldout-text {
+  margin-top: 16px;
+  color: #4f6779;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
 @keyframes glow {
   0% { transform: scale(1); }
   50% {
@@ -312,9 +327,27 @@ button {
   font-size: 17px;
 }
 
+.count-btn {
+  background: #ffffff;
+  color: #3c5870;
+  border: 2px solid #b7d1e4;
+  line-height: 1.7;
+}
+
+.count-full {
+  background: #edf7fd;
+  color: #6f95b3;
+  border: 2px solid #8fb2cc;
+}
+
 .redeem-btn {
   margin-top: 22px;
   background: #8fb2cc;
+}
+
+.redeem-btn:disabled {
+  background: #c7dbe9;
+  cursor: not-allowed;
 }
 
 .redeemed {
