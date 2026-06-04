@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const STAFF_DELETE_PASSWORD = "loho6666";
-const GIFT_TOTAL = 2;
+const GIFT_TOTAL = 100;
 
 const stations = ["checkin", "photo", "voice", "wall"];
 
